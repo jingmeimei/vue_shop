@@ -11,41 +11,45 @@ import Cate from './components/goods/Cate'
 import Params from './components/goods/params'
 import List from './components/goods/List'
 import Add from './components/goods/add'
+import Orders from './components/order/orders'
+import Reports from './components/report/report'
 
 Vue.use(Router)
 const router = new Router({
-  routes: [{
-    path: '/',
-    redirect: '/login'
-  },
-  {
-    path: '/login',
-    component: Login
-  },
-  {
-    path: '/home',
-    component: Home,
-    redirect: '/welcome',
-    children: [{
-      path: '/welcome',
-      component: Welcome
-    }, { path: '/users', component: Users },
-    { path: '/Rights', component: Rights },
-    { path: '/roles', component: Roles },
-    { path: '/categories', component: Cate },
-    { path: '/params', component: Params },
-    { path: '/goods', component: List },
-    { path: '/goods/add', component: Add }
+    routes: [{
+            path: '/',
+            redirect: '/login'
+        },
+        {
+            path: '/login',
+            component: Login
+        },
+        {
+            path: '/home',
+            component: Home,
+            redirect: '/welcome',
+            children: [{
+                    path: '/welcome',
+                    component: Welcome
+                }, { path: '/users', component: Users },
+                { path: '/Rights', component: Rights },
+                { path: '/roles', component: Roles },
+                { path: '/categories', component: Cate },
+                { path: '/params', component: Params },
+                { path: '/goods', component: List },
+                { path: '/goods/add', component: Add },
+                { path: '/orders', component: Orders },
+                { path: '/reports', component: Reports }
+            ]
+        }
     ]
-  }
-  ]
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login') return next()
-  const token = sessionStorage.getItem('token')
-  if (!token) return next('/login')
-  next()
+    if (to.path === '/login') return next()
+    const token = sessionStorage.getItem('token')
+    if (!token) return next('/login')
+    next()
 })
 
 export default router

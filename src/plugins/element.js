@@ -33,7 +33,11 @@ import {
   Steps
 
 } from 'element-ui'
+import Timeline from './timeline/index'
+import timelineItem from './timeline-item/index'
 
+Vue.use(timelineItem)
+Vue.use(Timeline)
 Vue.use(Button)
 Vue.use(Form)
 Vue.use(FormItem)
